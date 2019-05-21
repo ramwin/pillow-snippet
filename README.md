@@ -19,6 +19,10 @@ image.resize((120, 120))
 circled_image = convert.circle_image(image)
 circled_image.save("circled_image.png")
 ```
+* create a mask from Image
+```
+```
+
 
 # Contribution
 1. clone the code

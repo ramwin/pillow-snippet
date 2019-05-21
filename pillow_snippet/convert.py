@@ -11,6 +11,7 @@ import requests
 
 def convert_image(from_image, to_image, background, frontcolor):
     # TODO add comment
+    raise Exception("please complete the mask function first")
     img = Image.open(from_image)
     image_size = img.size
     img = img.resize(image_size)
