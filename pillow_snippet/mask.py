@@ -18,7 +18,10 @@ class Mask(object):
         self.size = image.size
 
     def create_transparent_image(self):
-        image = Image.new("RGBA", self.size, "#00000000")
+        return self.create_colorful_image("#00000000")
+
+    def create_colorful_image(self, color):
+        image = Image.new("RGBA", self.size, color)
         return image
 
     def get_exclude_white_image(self, tolerance=1):
@@ -33,3 +36,11 @@ class Mask(object):
         mask = Image.eval(self.image_grey, exclude_white)
         image.paste(self.image, (0,0), mask)
         return image
+
+    def convert_to_single_color(self, color):
+        """convert the color to a single color image"""
+        trans_image = self.create_transparent_image()
+        colorful_image = self.create_colorful_image(color)
+        mask = self.image.convert(mode="L")
+        trans_image.paste(colorful_image, (0, 0), mask)
+        return trans_image
