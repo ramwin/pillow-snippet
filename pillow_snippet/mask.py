@@ -37,10 +37,20 @@ class Mask(object):
         image.paste(self.image, (0,0), mask)
         return image
 
-    def convert_to_single_color(self, color, background="#00000000"):
-        """convert the color to a single color image"""
+    def convert_to_single_color(
+            self, color, background="#00000000", mode="L"):
+        """
+        convert the color to a single color image
+        params: mode
+            L: according the image's brightness
+            opacity: according the image's opacity
+        """
         bg_image = self.create_colorful_image(background)
         colorful_image = self.create_colorful_image(color)
-        mask = self.image.convert(mode="L")
-        bg_image.paste(colorful_image, (0, 0), mask)
+        if mode == "L":
+            bg_image.paste(colorful_image, (0, 0), self.image_grey)
+        elif mode == "opacity":
+            bg_image.paste(colorful_image, (0, 0), self.image)
+        else:
+            raise NotImplementedError("the mode can't be recognized")
         return bg_image

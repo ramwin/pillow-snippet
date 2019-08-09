@@ -11,6 +11,7 @@ from PIL import Image
 
 
 origin_image = Image.open('colorful_example.png')
+origin_image2 = Image.open("colorful_image.png")
 
 image = origin_image.resize((200, 200))
 circle_image = convert.circle_image(image)
@@ -21,6 +22,12 @@ exclude_white_image = mask.get_exclude_white_image(tolerance=8)
 exclude_white_image.save("test_result/exclude_white_image.png")
 change_to_red_image = mask.convert_to_single_color("#ff0000ff")
 change_to_red_image.save("test_result/change_to_red_image.png")
+
+mask2 = Mask(origin_image2)
+change_to_green_image = mask2.convert_to_single_color("#00ff00ff", mode="L")
+change_to_green_image.save("test_result/change_to_green_image_L.png")
+change_to_green_image = mask2.convert_to_single_color("#00ff00ff", mode="opacity")
+change_to_green_image.save("test_result/change_to_green_image_opacity.png")
 
 # save the data to a temporaryfile
 f = tempfile.TemporaryFile(suffix="png")
