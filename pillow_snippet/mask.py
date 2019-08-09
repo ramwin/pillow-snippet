@@ -37,10 +37,10 @@ class Mask(object):
         image.paste(self.image, (0,0), mask)
         return image
 
-    def convert_to_single_color(self, color):
+    def convert_to_single_color(self, color, background="#00000000"):
         """convert the color to a single color image"""
-        trans_image = self.create_transparent_image()
+        bg_image = self.create_colorful_image(background)
         colorful_image = self.create_colorful_image(color)
         mask = self.image.convert(mode="L")
-        trans_image.paste(colorful_image, (0, 0), mask)
-        return trans_image
+        bg_image.paste(colorful_image, (0, 0), mask)
+        return bg_image
