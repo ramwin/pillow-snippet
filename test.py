@@ -5,6 +5,7 @@
 
 from pillow_snippet import convert
 from pillow_snippet.mask import Mask
+import tempfile
 
 from PIL import Image
 
@@ -20,3 +21,10 @@ exclude_white_image = mask.get_exclude_white_image(tolerance=8)
 exclude_white_image.save("test_result/exclude_white_image.png")
 change_to_red_image = mask.convert_to_single_color("#ff0000ff")
 change_to_red_image.save("test_result/change_to_red_image.png")
+
+# save the data to a temporaryfile
+f = tempfile.TemporaryFile(suffix="png")
+change_to_red_image.save(f, format="png")
+f.seek(0)
+with open("test_result/tempfile.png", "wb") as target:
+    target.write(f.read())
