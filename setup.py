@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pillow-snippet",
-    version="0.0.2",
+    version="0.0.3",
     author="Xiang Wang",
     author_email="ramwin@qq.com",
     description="some useful snippet for image",
@@ -17,6 +17,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ramwin/pillow_snippet",
     packages=setuptools.find_packages(),
+    install_requires=[
+        "pillow",
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
